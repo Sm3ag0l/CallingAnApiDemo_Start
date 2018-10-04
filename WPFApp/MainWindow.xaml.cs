@@ -47,5 +47,43 @@ namespace WPFApp
         {
             await LoadImage();
         }
+
+      
+
+        private async void previousImageButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (currentNumber > 1)
+            {
+                currentNumber -= 1;
+                nextImageButton.IsEnabled = true;
+                await LoadImage(currentNumber);
+
+                if (currentNumber == 1)
+                {
+                    previousImageButton.IsEnabled = false;
+                }
+
+            }
+        }
+
+        private async void nextImageButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentNumber < maxNumber)
+            {
+                currentNumber += 1;
+                previousImageButton.IsEnabled = true;
+                await LoadImage(currentNumber);
+
+                if (currentNumber == maxNumber)
+                {
+                    nextImageButton.IsEnabled = false;
+                }
+
+
+
+            }
+
+        }
     }
 }
