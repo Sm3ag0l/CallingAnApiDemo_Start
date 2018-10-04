@@ -11,17 +11,16 @@ namespace DemoLibrary
     {
 
         // call to api
+       // public int MaxComicNumber { get; set; }
 
 
-        public int MaxComicNumber { get; set; }
-
-
-        public async Task<ComicModel> LoadComic(int comicNumber = 0)  // make it async so it doesn't lock up.  It might take a while to get the info
+        public static async Task<ComicModel> LoadComic(int comicNumber = 0)  // make it async so it doesn't lock up.  It might take a while to get the info
         {
             string url = "";
+
             if (comicNumber >0)
             {
-                url = $"https://xkcd.com{comicNumber}/info.0.json";
+                url = $"https://xkcd.com/{ comicNumber }/info.0.json";
             }
             else
             {
@@ -29,19 +28,12 @@ namespace DemoLibrary
                 url = $"https://xkcd.com/info.0.json";
             }
 
-            using (HttpResponseMessage response = await ApiHelper.ApiClient.GetAsync(url))   // open new request and wait for response.
+            using (HttpResponseMessage response = await ApiHelper.ApiClient.GetAsync(url))      // open new request and wait for response.
             {
-                if (response.IsSuccessStatusCode)  // if succesful then.
+                if (response.IsSuccessStatusCode)                                               // if succesful then.
                 {
-                    // read the data that comes back
-                    ComicModel comic = await response.Content.ReadAsAsync<ComicModel>();  // tries to map over the data to our model
-                    // you don't have to map all the data
-
-                    if (comicNumber == 0)
-                    {
-                        MaxComicNumber = comic.Num;
-                    }
-
+                                                                                                // read the data that comes back
+                    ComicModel comic = await response.Content.ReadAsAsync<ComicModel>();        // tries to map over the data to our model
 
                     return comic;
                 }
