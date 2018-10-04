@@ -22,7 +22,7 @@ namespace WPFApp
             InitializeComponent();
             ApiHelper.InitalizeClient();  // init at start of application Could also put in the app.xaml but more visible here
 
-
+            nextImageButton.IsEnabled = false;
             // cant put it in here  can't call in here or make it async.
 
         }
