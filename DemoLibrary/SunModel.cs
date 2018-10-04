@@ -8,7 +8,7 @@ namespace DemoLibrary
 {
     public class SunModel
     {
-        public DateTime SunriseTime { get; set; }
-        public DateTime SunsetTime { get; set; }
+        public DateTime Sunrise { get; set; }
+        public DateTime Sunset { get; set; }
     }
 }
